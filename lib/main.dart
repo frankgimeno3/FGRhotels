@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-import 'pages/signup_page.dart';
+import 'package:fgrhotels/pages/login_page.dart';
+import 'package:fgrhotels/pages/signup_page.dart';
+import 'package:fgrhotels/pages/forgot_password.dart';
+import 'package:fgrhotels/pages/dashboard_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,13 +16,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FGR Hotels',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/': (context) => const MyHomePage(title: 'FGR Hotels'),
+        '/login': (context) => LoginPage(),
+        '/signup': (context) => SignupPage(),
+        '/forgot_password': (context) => ForgotPasswordPage(),
+        '/dashboard_page': (context) => DashboardPage(),
+      },
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -48,8 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               _buildMenuButton('Login'),
               _buildMenuButton('Signup'),
-              _buildMenuButton('About Us'),
-              _buildMenuButton('Languages'),
             ],
           ),
         ),
