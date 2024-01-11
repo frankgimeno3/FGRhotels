@@ -50,7 +50,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        color: Colors.grey,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/hero-background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
