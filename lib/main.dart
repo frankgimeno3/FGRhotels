@@ -3,36 +3,32 @@ import 'package:fgrhotels/pages/login_page.dart';
 import 'package:fgrhotels/pages/signup_page.dart';
 import 'package:fgrhotels/pages/forgot_password.dart';
 import 'package:fgrhotels/pages/dashboard_page.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FGR Hotels',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+          background: Colors.white, // Fondo en blanco
+        ),
         useMaterial3: true,
       ),
-      routes: {
-        '/': (context) => const MyHomePage(title: 'FGR Hotels'),
-        '/login': (context) => LoginPage(),
-        '/signup': (context) => SignupPage(),
-        '/forgot_password': (context) => ForgotPasswordPage(),
-        '/dashboard_page': (context) => DashboardPage(),
-      },
+      home: const MyHomePage(title: 'FGR Hotels'),
     );
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -41,60 +37,118 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: const Color.fromRGBO(75, 207, 185, 1), // Color de la barra superior
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("FGR Hotels", style: TextStyle(color: Colors.white)),
+            const Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                // Lógica para el botón de login
+              },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromRGBO(75, 207, 185, 1),
+                elevation: 0, // Sin sombra
+              ),
+              child: const Text('Login', style: TextStyle(color: Colors.white)),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Lógica para el botón de signup
+              },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromRGBO(75, 207, 185, 1),
+                elevation: 0, // Sin sombra
+              ),
+              child: const Text('Signup', style: TextStyle(color: Colors.white)),
+            ),
+          ],
+        ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/hero-background.jpg"),
-            fit: BoxFit.cover,
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Image.asset("assets/images/hero-background.jpg"), // Tu imagen de fondo
+                const SizedBox(height: 20),
+                Center(
+                  child: const Text(
+                    "Pon rumbo a tu próxima aventura",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Color.fromRGBO(75, 207, 185, 1),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Center(
+                  child: const Text(
+                    "HASTA 25% DTO.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color.fromARGB(255, 214, 112, 94),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Center(
+                  child: const Text(
+                    "Adelántate y reserva tus vacaciones 2024",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
           ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _buildMenuButton('Login'),
-              _buildMenuButton('Signup'),
-            ],
+          Container(
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+               color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                // Aquí puedes agregar tus elementos de búsqueda y fechas
+                // Por ejemplo, TextField, DatePicker, y un botón de búsqueda
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
-
-  Widget _buildMenuButton(String title) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white.withOpacity(0.2),
-          onPrimary: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          side: BorderSide(color: Colors.white),
-        ),
-        onPressed: () {
-          switch (title) {
-            case 'Login':
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-              break;
-            case 'Signup':
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()));
-              break;
-          }
-        },
-        child: Text(title),
-      ),
-    );
-  }
-
-
 }
