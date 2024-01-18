@@ -3,7 +3,6 @@ import 'package:fgrhotels/pages/login_page.dart';
 import 'package:fgrhotels/pages/signup_page.dart';
 import 'package:fgrhotels/pages/forgot_password.dart';
 import 'package:fgrhotels/pages/dashboard_page.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +16,30 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FGR Hotels',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
-          background: Colors.white, // Fondo en blanco
+        colorScheme:
+        ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+          background: Colors.grey[100],
+        ),
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+            elevation: 0,
+          ),
+        ),
+        textTheme: TextTheme(
+          headline6: TextStyle(
+            color: Colors.grey,
+          ),
         ),
         useMaterial3: true,
       ),
+      routes: {
+        '/login_page': (context) => LoginPage(),
+        '/signup_page': (context) => SignupPage(),
+      },
       home: const MyHomePage(title: 'FGR Hotels'),
     );
   }
@@ -37,33 +55,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  void _navigateToLoginPage() {
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
+  void _navigateToSignupPage() {
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(75, 207, 185, 1), // Color de la barra superior
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("FGR Hotels", style: TextStyle(color: Colors.white)),
+            const Text("Menu", style: TextStyle(color: Colors.grey)),
+            const SizedBox(width: 8),
+            const Text("FGR Hotels", style: TextStyle(color: Colors.grey)),
             const Spacer(),
             ElevatedButton(
-              onPressed: () {
-                // Lógica para el botón de login
-              },
+              onPressed: _navigateToLoginPage, // Llama directamente a la función _navigateToLoginPage
               style: ElevatedButton.styleFrom(
                 primary: const Color.fromRGBO(75, 207, 185, 1),
-                elevation: 0, // Sin sombra
+                elevation: 0,
               ),
               child: const Text('Login', style: TextStyle(color: Colors.white)),
             ),
+
             ElevatedButton(
-              onPressed: () {
-                // Lógica para el botón de signup
-              },
+              onPressed: _navigateToSignupPage, // Llama directamente a la función _navigateToSignupPage
               style: ElevatedButton.styleFrom(
                 primary: const Color.fromRGBO(75, 207, 185, 1),
-                elevation: 0, // Sin sombra
+                elevation: 0,
               ),
               child: const Text('Signup', style: TextStyle(color: Colors.white)),
             ),
@@ -90,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Image.asset("assets/images/hero-background.jpg"), // Tu imagen de fondo
+                Image.asset("assets/images/hero-background.jpg"),
                 const SizedBox(height: 20),
                 Center(
                   child: const Text(
@@ -123,13 +147,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-
           ),
           Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-               color: Colors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
@@ -140,10 +163,36 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            child: Column(
+            child: Row(
               children: [
-                // Aquí puedes agregar tus elementos de búsqueda y fechas
-                // Por ejemplo, TextField, DatePicker, y un botón de búsqueda
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.4, // Ancho del primer campo
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Fecha de entrada", // Texto "Fecha de entrada" en el placeholder
+                    ),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.4, // Ancho del segundo campo
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Fecha de salida", // Texto "Fecha de salida" en el placeholder
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
