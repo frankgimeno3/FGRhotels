@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fgrhotels/pages/login_page.dart';
 import 'package:fgrhotels/pages/signup_page.dart';
-import 'package:fgrhotels/pages/forgot_password.dart';
-import 'package:fgrhotels/pages/dashboard_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -20,17 +19,17 @@ class MyApp extends StatelessWidget {
         ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
           background: Colors.grey[100],
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.white,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: Colors.white,
+            backgroundColor: Colors.white,
             elevation: 0,
           ),
         ),
-        textTheme: TextTheme(
-          headline6: TextStyle(
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
             color: Colors.grey,
           ),
         ),
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/login_page': (context) => LoginPage(),
-        '/signup_page': (context) => SignupPage(),
+        '/signup_page': (context) => const SignupPage(),
       },
       home: const MyHomePage(title: 'FGR Hotels'),
     );
@@ -61,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _navigateToSignupPage() {
-     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupPage()));
+     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignupPage()));
   }
 
   @override
@@ -75,18 +74,18 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text("FGR Hotels", style: TextStyle(color: Colors.grey)),
             const Spacer(),
             ElevatedButton(
-              onPressed: _navigateToLoginPage, // Llama directamente a la función _navigateToLoginPage
+              onPressed: _navigateToLoginPage,
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(75, 207, 185, 1),
+                backgroundColor: const Color.fromRGBO(75, 207, 185, 1),
                 elevation: 0,
               ),
-              child: const Text('Login', style: TextStyle(color: Colors.white)),
+               child: const Text('Login', style: TextStyle(color: Colors.white)),
             ),
 
             ElevatedButton(
-              onPressed: _navigateToSignupPage, // Llama directamente a la función _navigateToSignupPage
+              onPressed: _navigateToSignupPage,
               style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(75, 207, 185, 1),
+                backgroundColor: const Color.fromRGBO(75, 207, 185, 1),
                 elevation: 0,
               ),
               child: const Text('Signup', style: TextStyle(color: Colors.white)),
@@ -116,8 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Image.asset("assets/images/hero-background.jpg"),
                 const SizedBox(height: 20),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     "Pon rumbo a tu próxima aventura",
                     style: TextStyle(
                       fontSize: 24,
@@ -126,8 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     "HASTA 25% DTO.",
                     style: TextStyle(
                       fontSize: 16,
@@ -136,8 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Center(
-                  child: const Text(
+                const Center(
+                  child: Text(
                     "Adelántate y reserva tus vacaciones 2024",
                     style: TextStyle(
                       fontSize: 14,
@@ -166,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.4, // Ancho del primer campo
+                  width: MediaQuery.of(context).size.width * 0.4,
                   padding: const EdgeInsets.all(12),
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -174,13 +173,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Fecha de entrada", // Texto "Fecha de entrada" en el placeholder
+                    decoration: const InputDecoration(
+                      hintText: "Fecha de entrada",
                     ),
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.4, // Ancho del segundo campo
+                  width: MediaQuery.of(context).size.width * 0.4,
                   padding: const EdgeInsets.all(12),
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -188,8 +187,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Fecha de salida", // Texto "Fecha de salida" en el placeholder
+                    decoration: const InputDecoration(
+                      hintText: "Fecha de salida",
                     ),
                   ),
                 ),
@@ -199,5 +198,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+
   }
 }
