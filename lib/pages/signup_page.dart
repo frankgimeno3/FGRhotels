@@ -43,6 +43,16 @@ class SignupPage extends StatelessWidget {
                   filled: true,
                 ),
               ),
+              const SizedBox(height: 10),
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Confirmar contraseña',
+                  border: OutlineInputBorder(),
+                  fillColor: Colors.white,
+                  filled: true,
+                ),
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
