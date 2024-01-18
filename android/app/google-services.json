@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "568333057293",
+    "project_id": "fgrhoteles-dc7d8",
+    "storage_bucket": "fgrhoteles-dc7d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568333057293:android:8147126a464e34cdf74444",
+        "android_client_info": {
+          "package_name": "com.example.fgrhotels"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuKLaNlNnl1ODWnhFgHRpUrSRxKzaRpjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
