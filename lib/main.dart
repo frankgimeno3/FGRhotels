@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fgrhotels/pages/login_page.dart';
 import 'package:fgrhotels/pages/signup_page.dart';
+import 'package:fgrhotels/widget_tree.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -36,10 +39,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/login_page': (context) => LoginPage(),
+        '/login_page': (context) => const LoginPage(),
         '/signup_page': (context) => const SignupPage(),
       },
-      home: const MyHomePage(title: 'FGR Hotels'),
+      // home: const MyHomePage(title: 'FGR Hotels'),
+      home: const WidgetTree(),
     );
   }
 }
